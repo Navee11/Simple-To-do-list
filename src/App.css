@@ -14,7 +14,6 @@ body {
   border-radius: 2rem 2rem 0 0;
 }
 h1 {
-  text-align: center;
   margin: 10px;
 }
 input {
@@ -24,11 +23,19 @@ input {
   height: 2rem;
   font-size: 1rem;
   font-weight: 600;
-  color: rgb(26, 25, 25);
-
-  background-color: rgba(255, 212, 212, 0.178);
+  color: rgb(0, 0, 0);
+  text-align: center;
+  background-color: rgba(255, 212, 212, 0.63);
   border-radius: 0.5rem 0 0 0.5rem;
-  padding: 0px 20px;
+  padding: 3px 20px;
+}
+input :focus {
+  outline: none;
+  background-color: transparent;
+}
+::placeholder {
+  color: black;
+  opacity: 1; /* Firefox */
 }
 button {
   background-color: rgb(172, 145, 145);
