@@ -10,11 +10,12 @@ body {
   width: 500px;
   margin: 200px auto;
   background-color: rgb(238, 72, 72);
-  padding: 20px 10px;
-  border-radius: 2rem 2rem 0 0;
+  padding: 20px 20px;
+  border-radius: 2rem;
 }
 h1 {
   margin: 10px;
+  text-align: center;
 }
 input {
   outline: none;
@@ -24,7 +25,6 @@ input {
   font-size: 1rem;
   font-weight: 600;
   color: rgb(0, 0, 0);
-  text-align: center;
   background-color: rgba(255, 212, 212, 0.63);
   border-radius: 0.5rem 0 0 0.5rem;
   padding: 3px 20px;
@@ -50,4 +50,12 @@ button {
   margin: 20px 10px;
   display: flex;
   justify-content: center;
+}
+.list {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+.btn {
+  margin: 0px 10px;
 }

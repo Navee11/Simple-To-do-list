@@ -1,41 +1,59 @@
 import React from "react";
 import { useState } from "react";
 import "./App.css";
+import { MdDeleteForever } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
 
 const App = () => {
   const [person, setPerson] = useState("");
   const [people, setPeople] = useState([]);
+  const [data, setData] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setPeople([...people, person]);
-    setPerson("");
+    if (person) {
+      setPeople([...people, person]);
+      setPerson("");
+      setData(true);
+    }
   };
 
   return (
-    <div className="container">
-      <h1>Grocery Bud</h1>
-      <div>
-        <form action="" onSubmit={handleSubmit}>
-          <div className="form">
-            <input
-              type="text"
-              value={person}
-              id="name"
-              placeholder="Enter the groceries..."
-              onChange={(e) => setPerson(e.target.value)}
-              autoComplete="false"
-            />
-            <button type="submit">Submit</button>
+    <>
+      <div className="container">
+        <h1>Grocery Bud</h1>
+        <div>
+          <form action="" onSubmit={handleSubmit}>
+            <div className="form">
+              <input
+                type="text"
+                value={person}
+                id="name"
+                placeholder="Enter the groceries..."
+                onChange={(e) => setPerson(e.target.value)}
+                autoComplete="false"
+              />
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        {data && (
+          <div className="info">
+            {people.map((item, index) => {
+              return (
+                <div className="list" key={index}>
+                  <span>{item}</span>
+                  <div>
+                    <MdDeleteForever className="btn" />
+                    <FaRegEdit className="btn" />
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </form>
+        )}
       </div>
-      <div className="list">
-        {people.map((item, index) => {
-          return <p key={index}>{item}</p>;
-        })}
-      </div>
-    </div>
+    </>
   );
 };
 
