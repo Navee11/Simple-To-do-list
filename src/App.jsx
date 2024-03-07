@@ -1,36 +1,35 @@
 import React from "react";
 import { useState, useRef } from "react";
 import "./App.css";
-import { MdDeleteForever } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
+
+import List from "./List";
+let Modal = "";
 
 const App = () => {
   const [person, setPerson] = useState("");
   const [people, setPeople] = useState([]);
-  const [data, setData] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [isModal, setIsModal] = useState(true);
+  const [position, setPosition] = useState(null);
   const inputRef = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (person) {
-      setPeople([...people, person]);
-      setPerson("");
-      setData(true);
+    console.log(edit);
+    if (!edit) {
+      if (person) {
+        setPeople([...people, person]);
+      }
+    } else {
+      people[position] = person;
+      setEdit(false);
     }
-  };
 
-  const removeItem = (id) => {
-    let newPeople = people.filter((item, index) => index !== id);
-    setPeople(newPeople);
-  };
-
-  const editItem = (id) => {
-    let person = people[id];
-    inputRef.current.focus();
-    inputRef.current.value = people[id];
+    setPerson("");
   };
   return (
     <>
       <div className="container">
+        {isModal && <div>{Modal}</div>}
         <h1>Grocery Bud</h1>
         <div>
           <form action="" onSubmit={handleSubmit}>
@@ -42,32 +41,21 @@ const App = () => {
                 id="name"
                 placeholder="Enter the groceries..."
                 onChange={(e) => setPerson(e.target.value)}
-                autoComplete="false"
+                autoComplete="off"
               />
-              <button type="submit">Submit</button>
+              <button type="submit">{edit ? "Edit" : "Submit"}</button>
             </div>
           </form>
         </div>
-        {data && (
-          <div className="info">
-            {people.map((item, index) => {
-              return (
-                <div className="list" key={index}>
-                  <span>{item}</span>
-                  <div>
-                    <MdDeleteForever
-                      className="btn"
-                      onClick={() => removeItem(index)}
-                    />
-                    <FaRegEdit
-                      className="btn"
-                      onClick={() => editItem(index)}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        {people.length !== 0 && (
+          <List
+            people={people}
+            inputRef={inputRef}
+            setPeople={setPeople}
+            setEdit={setEdit}
+            setPosition={setPosition}
+            setPerson={setPerson}
+          />
         )}
       </div>
     </>
