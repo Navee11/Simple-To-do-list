@@ -9,10 +9,14 @@ function List({
   setEdit,
   setPosition,
   setPerson,
+  setIsModal,
+  setContent,
 }) {
   const removeItem = (id) => {
     let newPeople = people.filter((item, index) => index !== id);
     setPeople(newPeople);
+    setContent("Item is removed from the List");
+    setIsModal(true);
   };
 
   const editItem = (id, value) => {
@@ -26,7 +30,7 @@ function List({
       {people.map((item, index) => {
         return (
           <div className="list" key={index}>
-            <span>{item}</span>
+            <p className="list-item">{item}</p>
             <div>
               <MdDeleteForever
                 className="btn"
@@ -40,6 +44,18 @@ function List({
           </div>
         );
       })}
+      {people.length !== 0 && (
+        <button
+          id="btn"
+          onClick={() => {
+            setPeople([]);
+            setContent("List is Empty");
+            setIsModal(true);
+          }}
+        >
+          Clear Items
+        </button>
+      )}
     </div>
   );
 }

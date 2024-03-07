@@ -9,19 +9,19 @@ body {
 .container {
   width: 500px;
   margin: 200px auto;
-  background-color: rgb(238, 72, 72);
+  background-color: rgb(255, 236, 236);
   padding: 20px 20px;
-  border-radius: 1rem;
+  box-shadow: 20px 20px 60px rgb(146, 142, 142);
 }
 h1 {
-  margin: 10px;
   text-align: center;
+  color: rgb(46, 43, 43);
 }
 input {
   outline: none;
   border: none;
   width: 65%;
-  height: 2rem;
+  height: 1.5rem;
   font-size: 1rem;
   font-weight: 600;
   color: rgb(0, 0, 0);
@@ -37,7 +37,10 @@ input :focus {
   color: black;
   opacity: 1; /* Firefox */
 }
-button {
+.btn {
+  margin: 0 15px;
+}
+.form-btn {
   background-color: rgb(172, 145, 145);
   border: none;
   font-size: 1rem;
@@ -52,10 +55,26 @@ button {
   justify-content: center;
 }
 .list {
+  width: 400px;
+  padding: 2px 3px;
   display: flex;
   justify-content: space-between;
-  margin: 5px;
+  align-items: center;
+  margin: 5px auto;
+  background-color: grey;
 }
-.btn {
-  margin: 0px 10px;
+#btn {
+  margin: 0px auto;
+  display: block;
+  border: none;
+  background: transparent;
+  color: black;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.modal {
+  text-align: center;
+}
+.list {
+  padding-left: 20px;
 }

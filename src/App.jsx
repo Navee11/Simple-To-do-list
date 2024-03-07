@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useRef } from "react";
 import "./App.css";
-
 import List from "./List";
-let Modal = "";
+import Modal from "./Modal";
+let modalContent = "";
 
 const App = () => {
   const [person, setPerson] = useState("");
@@ -11,6 +11,7 @@ const App = () => {
   const [edit, setEdit] = useState(false);
   const [isModal, setIsModal] = useState(true);
   const [position, setPosition] = useState(null);
+  const [content, setContent] = useState("");
   const inputRef = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,19 +19,30 @@ const App = () => {
     if (!edit) {
       if (person) {
         setPeople([...people, person]);
+        setContent("Item Added to the List");
+      } else {
+        setContent("Please Enter the Value");
       }
     } else {
       people[position] = person;
       setEdit(false);
+      setContent("Item Added to the List");
     }
-
+    setIsModal(true);
     setPerson("");
   };
   return (
     <>
       <div className="container">
-        {isModal && <div>{Modal}</div>}
-        <h1>Grocery Bud</h1>
+        {isModal && (
+          <Modal
+            people={people}
+            setContent={setContent}
+            content={content}
+            setIsModal={setIsModal}
+          />
+        )}
+        <h1>To-Do-List</h1>
         <div>
           <form action="" onSubmit={handleSubmit}>
             <div className="form">
@@ -43,7 +55,9 @@ const App = () => {
                 onChange={(e) => setPerson(e.target.value)}
                 autoComplete="off"
               />
-              <button type="submit">{edit ? "Edit" : "Submit"}</button>
+              <button className="form-btn" type="submit">
+                {edit ? "Edit" : "Submit"}
+              </button>
             </div>
           </form>
         </div>
@@ -55,6 +69,8 @@ const App = () => {
             setEdit={setEdit}
             setPosition={setPosition}
             setPerson={setPerson}
+            setIsModal={setIsModal}
+            setContent={setContent}
           />
         )}
       </div>
