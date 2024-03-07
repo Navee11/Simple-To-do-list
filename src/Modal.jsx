@@ -5,7 +5,7 @@ function Modal({ people, setIsModal, content }) {
     setIsModal(false);
   }, 2000);
 
-  return <div className="modal">{content}</div>;
+  return <p className="modal">{content}</p>;
 }
 
 export default Modal;
